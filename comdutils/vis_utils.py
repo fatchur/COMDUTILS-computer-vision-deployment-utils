@@ -4,19 +4,40 @@ import random
 
 
 def give_frame(image, company_name, project_name):
+	"""
+	a function for Giving the frame (Big Title at the top)
+	Args:
+		image:				an opencv image with format of BGR
+		company_name:		a string, the name of the company
+		project_name:       a string, the name of the project
+	Return:
+		An opencv image
+	"""
+	# get the characteristic of the image
 	h, w, _ = image.shape
+	# we wan to make a fullfill rectangle on the top of the image
 	space = int(0.1 * h/2)
 	cv2.rectangle(image, (0, 0), (int(0.5 * w), int(0.1 * h)), (255, 255, 255), -1)
-	## put project name
+	# put project name on the rectangle
 	cv2.putText(image, project_name, (5, int( 5 + space/2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 100, 255), 2, cv2.LINE_AA)
-	## put company name
+	# put company name on the rectangle
 	cv2.putText(image, company_name, (5, int( 5 + space + space/2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 100, 255), 2, cv2.LINE_AA)
 	return image
 
 
 def draw_rectangles(rects, image, COLORS):
-	## draw rectangle
+	"""
+	a function for drwing a rectangle with random color
+	Args:
+		image:				an opencv image with format of BGR
+		company_name:		a string, the name of the company
+		project_name:       a string, the name of the project
+	Return:
+		An opencv image
+	"""
+	# draw the rectangle
 	for i in rects:
+		# 
 		idx = random.randint(0,len(COLORS)-1)
 		cv2.rectangle(image, (i[0], i[1]), (i[2], i[3]), COLORS[idx], 2)
 	return image
@@ -46,3 +67,20 @@ def put_vertical_textsoverrect(rects, image, text_list):
 		for idx2, j in enumerate(text_list[idx]):
 			cv2.putText(image, j, ((i[0] + 5), int(i[1] + space * idx2 + space/2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2, cv2.LINE_AA)
 	return image
+
+
+def rectangle_crosses_line(rects, line):
+	xl1 = line[0][0]
+	yl1 = line[0][1]
+	xl2 = line[1][0]
+	yl2 = line[1][1]
+
+	for i in rects:
+		xr1 = i[0]
+		yr1 = i[1]
+		xr2 = i[2]
+		yr2 = i[3]
+		
+
+
+	return 0
