@@ -67,20 +67,3 @@ def put_vertical_textsoverrect(rects, image, text_list):
 		for idx2, j in enumerate(text_list[idx]):
 			cv2.putText(image, j, ((i[0] + 5), int(i[1] + space * idx2 + space/2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2, cv2.LINE_AA)
 	return image
-
-
-def rectangle_crosses_line(rects, line):
-	xl1 = line[0][0]
-	yl1 = line[0][1]
-	xl2 = line[1][0]
-	yl2 = line[1][1]
-
-	for i in rects:
-		xr1 = i[0]
-		yr1 = i[1]
-		xr2 = i[2]
-		yr2 = i[3]
-		
-
-
-	return 0
