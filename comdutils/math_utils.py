@@ -29,7 +29,7 @@ class LineInspect():
 					if y > min(i[1], i[3]) and y < max(i[1], i[3]):
 						self.line_points.append([j, y])
 	
-	def is_crossing_line(self, rects, reduce_rect_size=0.5):
+	def is_crossing_line(self, rects, reduce_rect_size=0.3):
 		"""
 		a function for Giving the frame (Big Title at the top)
 		Args:
