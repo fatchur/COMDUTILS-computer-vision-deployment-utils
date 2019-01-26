@@ -5,7 +5,7 @@ import random
 
 def give_frame(image, company_name, project_name):
 	"""
-	a function for Giving the frame (Big Title at the top)
+	a function for giving an image a frame witch contains a rectngle border, company and project name at the top
 	Args:
 		image:				an opencv image with format of BGR
 		company_name:		a string, the name of the company
@@ -25,25 +25,34 @@ def give_frame(image, company_name, project_name):
 	return image
 
 
-def draw_rectangles(rects, image, COLORS):
+def draw_rectangles(image, rects, COLORS):
 	"""
-	a function for drwing a rectangle with random color
+	a function for drawing some rectangles with random color
 	Args:
 		image:				an opencv image with format of BGR
-		company_name:		a string, the name of the company
-		project_name:       a string, the name of the project
+		rects:				a list of opencv rectangle
+		COLORS:       		a list of opencv color 
 	Return:
 		An opencv image
 	"""
 	# draw the rectangle
 	for i in rects:
-		# 
+		# get random color
 		idx = random.randint(0,len(COLORS)-1)
 		cv2.rectangle(image, (i[0], i[1]), (i[2], i[3]), COLORS[idx], 2)
 	return image
 
 
 def put_topoverlays(rects, image, alpha=0.3):
+	"""
+	a function for drawing some rectangles with random color
+	Args:
+		image:				an opencv image with format of BGR
+		rects:				a list of opencv rectangle
+		COLORS:       		a list of opencv color 
+	Return:
+		An opencv image
+	"""
 	h, w, _ = image.shape
 	im = np.ones(shape=image.shape).astype(np.uint8)
 	overlay_bboxs = []
