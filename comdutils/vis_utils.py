@@ -43,13 +43,13 @@ def draw_rectangles(image, rects, COLORS):
 	return image
 
 
-def put_topoverlays(rects, image, alpha=0.3):
+def put_topoverlays(image, rects, alpha=0.3):
 	"""
 	a function for drawing some rectangles with random color
 	Args:
 		image:				an opencv image with format of BGR
 		rects:				a list of opencv rectangle
-		COLORS:       		a list of opencv color 
+		alpha:       		a float, blend level
 	Return:
 		An opencv image
 	"""
@@ -68,7 +68,16 @@ def put_topoverlays(rects, image, alpha=0.3):
 	return image, overlay_bboxs
 
 
-def put_vertical_textsoverrect(rects, image, text_list):
+def put_vertical_textsoverrect(image, rects, text_list):
+	"""
+	a function for drawing some rectangles with random color
+	Args:
+		image:				an opencv image with format of BGR
+		rects:				a list of opencv rectangle
+		text_list:       	a list of string
+	Return:
+		An opencv image
+	"""
 	for idx, i in enumerate(rects):
 		h = i[3] - i[1]
 		space = int(h/len(text_list[0]))
