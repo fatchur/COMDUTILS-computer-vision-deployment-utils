@@ -39,7 +39,40 @@ def draw_rectangles(image, rects, COLORS):
 	for i in rects:
 		# get random color
 		idx = random.randint(0,len(COLORS)-1)
-		cv2.rectangle(image, (i[0], i[1]), (i[2], i[3]), COLORS[idx], 2)
+		rect_width = int(abs(i[2] - i[0]))
+		rect_height = int(abs(i[3] - i[1]))
+		# draw rectangle
+		cv2.rectangle(image, (i[0], i[1]), (i[2], i[3]), COLORS[idx], 1)
+
+		# top left 
+		cv2.line(image, (i[0], i[1]), (int(i[0] + rect_width/4), i[1]), COLORS[idx], 2)
+		cv2.line(image, (i[0], i[1]), (i[0], int(i[1] + rect_height/4)), COLORS[idx], 2)
+		# bottom left
+		cv2.line(image, (i[0], i[3]), (int(i[0] + rect_width/4), i[3]), COLORS[idx], 2)
+		cv2.line(image, (i[0], i[3]), (i[0], int(i[3] - rect_height/4)), COLORS[idx], 2)
+		# top right 
+		cv2.line(image, (i[2], i[1]), (int(i[2] - rect_width/4), i[1]), COLORS[idx], 2)
+		cv2.line(image, (i[2], i[1]), (i[2], int(i[1] + rect_height/4)), COLORS[idx], 2)
+		# bottom left
+		cv2.line(image, (i[2], i[3]), (int(i[2] - rect_width/4), i[3]), COLORS[idx], 2)
+		cv2.line(image, (i[2], i[3]), (i[2], int(i[3] - rect_height/4)), COLORS[idx], 2)
+		# ---- outer
+		i[0] = i[0] - int(0.05 * rect_width)
+		i[2] = i[2] + int(0.05 * rect_width)
+		i[1] = i[1] - int(0.05 * rect_width)
+		i[3] = i[3] + int(0.05 * rect_width)
+		# top left 
+		cv2.line(image, (i[0], i[1]), (int(i[0] + rect_width/8), i[1]), COLORS[idx], 2)
+		cv2.line(image, (i[0], i[1]), (i[0], int(i[1] + rect_height/8)), COLORS[idx], 2)
+		# bottom left
+		cv2.line(image, (i[0], i[3]), (int(i[0] + rect_width/8), i[3]), COLORS[idx], 2)
+		cv2.line(image, (i[0], i[3]), (i[0], int(i[3] - rect_height/8)), COLORS[idx], 2)
+		# top right 
+		cv2.line(image, (i[2], i[1]), (int(i[2] - rect_width/8), i[1]), COLORS[idx], 2)
+		cv2.line(image, (i[2], i[1]), (i[2], int(i[1] + rect_height/8)), COLORS[idx], 2)
+		# bottom left
+		cv2.line(image, (i[2], i[3]), (int(i[2] - rect_width/8), i[3]), COLORS[idx], 2)
+		cv2.line(image, (i[2], i[3]), (i[2], int(i[3] - rect_height/8)), COLORS[idx], 2)
 	return image
 
 
