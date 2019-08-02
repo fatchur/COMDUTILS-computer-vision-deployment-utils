@@ -118,3 +118,26 @@ def put_vertical_textsoverrect(image, rects, text_list):
 		for idx2, j in enumerate(text_list[idx]):
 			cv2.putText(image, j, ((i[0] + 5), int(i[1] + space * idx2 + space/2)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2, cv2.LINE_AA)
 	return image
+
+
+def draw_yolo_bbox(bbox_list, label_list, image, font_size=1, line_size=1, color=(0, 255, 100)):
+	"""function for drawing yolo bbox
+	
+	Arguments:
+		bbox_list {list of integer list} -- list of bounding box, ex: [[0, 10, 100, 120], [100, 10, 100, 120]]
+		label_list {list of string} -- the label list
+		image {numpy array} -- opencv numpy image
+	
+	Keyword Arguments:
+		font_size {int} -- [description] (default: {1})
+		line_size {int} -- [description] (default: {1})
+		color {tuple} -- [description] (default: {(0, 255, 100)})
+	
+	Returns:
+		[numpy array] -- the result image
+	"""
+	for i, j in zip(bbox_list, label_list):
+        cv2.rectangle(image, (i[0], i[1]), (i[2], i[3]), color, line_size)
+		cv2.putText(image, j, (i[0], i[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, font_size, cv2.LINE_AA)
+	
+	return image

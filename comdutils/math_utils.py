@@ -99,11 +99,11 @@ class LineInspect():
 				is_crossing.append([1, i])
 		return is_crossing
 
-	def crossing_flow():
+	def crossing_flow(self):
 		a = 0
 
 
-def nms(batch, num_class, confidence_threshold=0.5, overlap_threshold=0.5, is_relative=False):
+def nms(batch, num_class, confidence_threshold=0.5, overlap_threshold=0.5, is_relative=False, size=416):
 	"""[summary]
 	Arguments:
 	    num_class{int} -- the number of object class
@@ -163,7 +163,11 @@ def nms(batch, num_class, confidence_threshold=0.5, overlap_threshold=0.5, is_re
 		height = box[3]
 		conf = result_conf[i]
 		the_class = result_class[i][0]
-		final_box.append([left, top, width, height, conf, the_class])
+
+		if is_relative:
+			final_box.append([float(left)/size, float(top)/size, float(width)/size, float(height)/size, conf, the_class])
+		else:
+		    final_box.append([left, top, width, height, conf, the_class])
 	return final_box
 
 
