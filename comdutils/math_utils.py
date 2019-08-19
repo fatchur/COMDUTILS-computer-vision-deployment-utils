@@ -68,7 +68,7 @@ class LineInspect():
             
             for j in range(delta):
                 new_y = y_point_before + j + 1
-                self.line_points.append([i[0], new_y)
+                self.line_points.append([i[0], new_y])
 
 
     def is_crossing_line(self, rects, reduce_rect_size=0.3):
